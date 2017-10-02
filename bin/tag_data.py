@@ -80,7 +80,7 @@ for i in df_list:
 data_dict = {'acc': acc['data'], 'bvp' : bvp['data'], 'eda' : eda['data'], 'hr' : hr['data'], 'ibi' : ibi['data']}
 
 # insert the path to the folder you want data to export to
-writing_directory = '/Users/Charlie/Desktop/Karl-analysis/data/interim/'
+writing_directory = '~/data/interim/'
 
 # save data dictionary as a pickled file
 pickle.dump(data_dict, open(writing_directory + participant_ID + '.p', "wb"))
