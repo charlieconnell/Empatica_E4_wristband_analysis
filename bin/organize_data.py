@@ -21,7 +21,7 @@ directory = filedialog.askdirectory()
 os.chdir(directory)
 
 # insert the path to the folder you want files to export to
-writing_directory = '/Users/Charlie/Desktop/Karl-analysis/data/raw/'
+writing_directory = '~/data/raw/'
 
 # use folder name to assign unique identifier
 filename_sep = directory.split('/')
