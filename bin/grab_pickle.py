@@ -11,7 +11,7 @@ import pandas as pd
 from os import listdir
 from os.path import isfile, join
 
-directory = '/Users/Charlie/Desktop/Karl-analysis/data/interim/'
+directory = '~/data/interim/'
 filelist = [f for f in listdir(directory) if isfile(join(directory, f))]
 fileimport = []
 for file in filelist:
@@ -78,7 +78,7 @@ hr_cols = hr_pivot.columns.tolist()
 hr_pivot[hr_cols] = hr_pivot[bvp_cols].fillna(method='ffill', axis=1, limit=5)
 
 # export processed files to csv
-export_path = '/Users/Charlie/Desktop/Karl-analysis/data/processed/'
+export_path = '~/data/processed/'
 acc_pivot.to_csv(export_path + 'acc.csv')
 bvp_pivot.to_csv(export_path + 'bvp.csv')
 eda_pivot.to_csv(export_path + 'eda.csv')
@@ -86,7 +86,7 @@ hr_pivot.to_csv(export_path + 'hr.csv')
 ibi.to_csv(export_path + 'ibi.csv')
 
 # export full dataframes to csv in interim
-export_path2 = '/Users/Charlie/Desktop/Karl-analysis/data/dump/'
+export_path2 = '~/data/dump/'
 acc.to_csv(export_path2 + 'acc_long.csv')
 bvp.to_csv(export_path2 + 'bvp_long.csv')
 eda.to_csv(export_path2 + 'eda_long.csv')
