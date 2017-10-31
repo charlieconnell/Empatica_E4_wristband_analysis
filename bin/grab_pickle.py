@@ -8,6 +8,7 @@ email: charlotte.connell@gmail.com
 """
 import pickle
 import pandas as pd
+import numpy as np
 from os import listdir
 from os.path import isfile, join
 
@@ -43,8 +44,6 @@ for pickles in fileimport:
             idex = idex[0] - time_pre_tag
             pickles[key] = pickles[key].loc[pickles[key].index > idex]
             pickles[key] = pickles[key].reset_index()
-            pickles[key]['normalized_time'] = pickles[key]['duration(s)'] - pickles[key]['duration(s)'][0]
-            pickles[key]['normalized_time'] = round(pickles[key]['normalized_time'], value)
             pickles[key]['participantID'] = fileimport[pickle_index]
             del pickles[key]['time_series']
             if key == 'acc':
@@ -62,20 +61,23 @@ for pickles in fileimport:
     pickles_df[fileimport[pickle_index]] = pickles
 
     pickle_index += 1
-    
-bvp_pivot = bvp.pivot(index='normalized_time', columns='participantID', values='photoplethysmograph')
-eda_pivot = eda.pivot(index='normalized_time', columns='participantID', values='microsiemens')
-hr_pivot = hr.pivot(index='normalized_time', columns='participantID', values='bpm')
-acc_pivot = acc.pivot(index='normalized_time', columns='participantID', values='g_force')
 
-bvp_cols = bvp_pivot.columns.tolist()
-bvp_pivot[bvp_cols] = bvp_pivot[bvp_cols].fillna(method='ffill', axis=1, limit=5)
-eda_cols = eda_pivot.columns.tolist()
-eda_pivot[eda_cols] = eda_pivot[eda_cols].fillna(method='ffill', axis=1, limit=5)
-acc_cols = acc_pivot.columns.tolist()
-acc_pivot[acc_cols] = acc_pivot[acc_cols].fillna(method='ffill', axis=1, limit=5)
-hr_cols = hr_pivot.columns.tolist()
-hr_pivot[hr_cols] = hr_pivot[bvp_cols].fillna(method='ffill', axis=1, limit=5)
+# creating a normalized time for the data as a whole using the sampling rates
+# given for each measure: ACC = 32 Hz; BVP = 64 Hz; EDA = 4 Hz; HR = 1 Hz;
+# TEMP = 4 Hz
+
+bvp_pivot = bvp.pivot(columns='participantID', values='photoplethysmograph')
+bvp_pivot['time (s)'] = np.arange(0, len(bvp_pivot)/64, 1/64).tolist()
+bvp_pivot = bvp_pivot.set_index('time (s)')
+eda_pivot = eda.pivot(columns='participantID', values='microsiemens')
+eda_pivot['time (s)'] = np.arange(0, len(eda_pivot)/4, 1/4).tolist()
+eda_pivot = eda_pivot.set_index('time (s)')
+hr_pivot = hr.pivot(columns='participantID', values='bpm')
+hr_pivot['time (s)'] = np.arange(0, len(hr_pivot), 1).tolist()
+hr_pivot = hr_pivot.set_index('time (s)')
+acc_pivot = acc.pivot(columns='participantID', values='g_force')
+acc_pivot['time (s)'] = np.arange(0, len(acc_pivot)/32, 1/32).tolist()
+acc_pivot = acc_pivot.set_index('time (s)')    
 
 # export processed files to csv
 export_path = '~/data/processed/'
