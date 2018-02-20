@@ -21,7 +21,7 @@ Steps for analysis
 
 • After data collection, move unzipped participant folders to the ‘unzipped-folders’ folder within the ‘data’ directory
 
-•‘Run’ the ‘organize_data.py’ script in Spyder by pressing the green play button on the toolbar located at the top of the application.
+•‘Run’ the ‘organize_data.py’.
 
 • A file dialog box will pop-up – use this to navigate to the ‘unzipped-folders’ folder within the data directory and select the participant folder you would like to organize. NOTE: The script will take a variable amount of time to execute, depending on the size of the participant files.
 
