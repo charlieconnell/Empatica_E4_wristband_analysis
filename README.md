@@ -1,5 +1,6 @@
 # Empatica_E4_wristband_analysis
-Python scripts that can be used to organize multiple participant files collected via the Empatica E4 wristband
+Python scripts that can be used to organize multiple participant files collected via the Empatica E4 wristband. The Empatica E4 wristband can be used to monitor physiological signals in real time. The watch outputs measures of blood volume pulse (bvp), heart rate (hr), motion activity via a triaxial accelerometer (acc), electrodermal activity (eda) and peripheral skin temperature (ibi). Event markers can also be inserted by the user. This script provides the option to normalize the data relative to an event marker button.
+For more information about the Empatica wristband, please refer to their website: https://www.empatica.com/en-eu/
 
 The file structure and their associated functions are outlined below:
 
@@ -39,12 +40,13 @@ NOTE: the duration of time (in seconds) that you want to have before the tag, i.
 3. Collect all the ‘pickled’ data files in the ‘interim’ folder and combine them into summary files with the format:
 Column 1: Normalized time; Column 2: Participant 2#### ….. Column n: Participant n#####.
 
-• Once you have a collection of pickled files in the ‘interim’ folder within the ‘data’ directory, open and run the python script ‘grab_pickle.py’ in the Spyder application.
+• Once you have a collection of pickled files in the ‘interim’ folder within the ‘data’ directory, open and run the python script ‘grab_pickle.py’.
 
 • No file dialog box will pop up – the script will simply collect all the pickled files in the ‘interim’ folder automatically.
 
 • There are two types of data files that are exported as a result of this script:
 
-	o‘acc’, ‘ibi’, ‘bvp’, ‘eda’ and ‘hr’ .csv files are exported to the ‘processed’ folder within the data directory. These files 		contain a normalized time series in column one, and one participant per column. The time that the tags occur for each participant 	  are synchronized to the time that the user has input into line 35 of the ‘grab_pickle.py’ script (‘time_pre_tag’ variable; default   	     value is 60 seconds).
-	o‘acc’, ‘ibi’, ‘bvp’, ‘eda’ and ‘hr’ .csv files are exported to the ‘dump’ folder within the data directory. These data are 		provided in ‘long’ format. While difficult to read and understand at a glance, data files in this format are easier to manipulate 	  for further data analysis in excel, python, R etc. if needed. For more information on data files in ‘long format’ please review 	  Hadley Wickham’s paper on ‘Tidy Data’ (http://vita.had.co.nz/papers/tidy-data.html).
+  o ‘acc’, ‘ibi’, ‘bvp’, ‘eda’ and ‘hr’ .csv files are exported to the ‘processed’ folder within the data directory. These files 		contain a normalized time series in column one, and one participant per column. The time that the tags occur for each participant are synchronized to the time that the experimenter inputs into line 35 of the ‘grab_pickle.py’ script (‘time_pre_tag’ variable; default value is 60 seconds).
+  
+  o ‘acc’, ‘ibi’, ‘bvp’, ‘eda’ and ‘hr’ .csv files are exported to the ‘dump’ folder within the data directory. These data are 		provided in ‘long’ format. While difficult to read and understand at a glance, data files in this format are easier to manipulate 	  for further data analysis in excel, python, R etc. if needed. For more information on data files in ‘long format’ please review 	  Hadley Wickham’s paper on ‘Tidy Data’ (http://vita.had.co.nz/papers/tidy-data.html).
 
