@@ -1,5 +1,5 @@
 # Empatica_E4_wristband_analysis
-Python scripts that can be used to organize multiple participant files collected via the Empatica E4 wristband. The Empatica E4 wristband can be used to monitor physiological signals in real time. The watch outputs measures of blood volume pulse (bvp), heart rate (hr), motion activity via a triaxial accelerometer (acc), electrodermal activity (eda) and peripheral skin temperature (ibi). Event markers can also be inserted by the user. This script provides the option to normalize the data relative to an event marker button.
+Python scripts that can be used to organize multiple participant files collected via the Empatica E4 wristband. The Empatica E4 wristband can be used to monitor physiological signals in real time. The watch outputs measures of blood volume pulse (bvp), heart rate (hr), motion activity via a triaxial accelerometer (acc), electrodermal activity (eda) and peripheral skin temperature (ibi). Event markers can also be inserted by the user. This processing pipeline provides the option to normalize the data relative to an event marker button.
 For more information about the Empatica wristband, please refer to their website: https://www.empatica.com/en-eu/
 
 The file structure and their associated functions are outlined below:
